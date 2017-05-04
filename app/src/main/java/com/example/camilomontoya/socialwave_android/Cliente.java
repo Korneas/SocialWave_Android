@@ -17,7 +17,7 @@ public class Cliente implements Runnable {
     private Socket s;
     private static Cliente ref;
     private Observer boss;
-    private static final String ADDRESS = "";
+    private static final String ADDRESS = "172.30.178.0";
     private static final int PORT = 5000;
     private boolean life;
 

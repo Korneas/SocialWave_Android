@@ -33,25 +33,11 @@
         android:ems="10"
         android:textColorHint="@color/colorBgDark"
         android:backgroundTint="@color/colorAccent"
-        android:id="@+id/editText2"
+        android:id="@+id/user_in"
         android:hint="Usuario"
         android:textColor="@color/colorBg"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:textColor="@color/colorBg"
-        android:textColorHint="@color/colorBgDark"
-        android:backgroundTint="@color/colorAccent"
-        android:id="@+id/editText"
-        android:hint="Contraseña"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="23dp" />
 
     <ImageButton
         android:layout_width="match_parent"
@@ -65,4 +51,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="41dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="@color/colorBg"
+        android:textColorHint="@color/colorBgDark"
+        android:backgroundTint="@color/colorAccent"
+        android:id="@+id/pass_in"
+        android:hint="Contraseña"
+        android:layout_below="@+id/user_in"
+        android:layout_alignStart="@+id/user_in"
+        android:layout_marginTop="23dp"
+        android:inputType="textPassword" />
 </RelativeLayout>

@@ -10,14 +10,19 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class RegisterActivity extends AppCompatActivity {
+import serial.Usuario;
+import serial.Validacion;
+
+public class RegisterActivity extends AppCompatActivity implements Observer {
 
     private EditText name, pass_1, pass_2, mail;
     private String[] info;
     private ImageButton reg;
 
-    private Typeface type;
+    private static Typeface type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +40,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         name.setTypeface(type);
         pass_1.setTypeface(type);
+        pass_2.setTypeface(type);
+        mail.setTypeface(type);
 
         reg = (ImageButton) findViewById(R.id.reg_envio);
+
+        Cliente.getInstance().setObserver(this);
 
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,16 +57,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (info[0].isEmpty() || info[1].isEmpty() || info[2].isEmpty() || info[3].isEmpty()) {
                     aviso("Completa todos los campos para continuar");
-                } else if(info[1].contentEquals(info[2])){
+                } else if(!info[1].contentEquals(info[2])){
                     aviso("Las contraseñas no coinciden");
                 } else {
-                    aviso("Registro exitoso");
                     try {
-                        Cliente.getInstance().enviar(null);
+                        Cliente.getInstance().enviar(new Usuario(info[0],info[1],info[3]));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    startActivity(new Intent(RegisterActivity.this,LogActivity.class));
                 }
             }
         });
@@ -65,5 +72,30 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void aviso(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof Validacion){
+            Validacion v = (Validacion) arg;
+            if(v.getType().contains("registro")){
+                if(v.isCheck()){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            aviso("Registro exitoso");
+                        }
+                    });
+                    startActivity(new Intent(RegisterActivity.this,LogActivity.class));
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            aviso("El nombre de usuario ya existe");
+                        }
+                    });
+                }
+            }
+        }
     }
 }
