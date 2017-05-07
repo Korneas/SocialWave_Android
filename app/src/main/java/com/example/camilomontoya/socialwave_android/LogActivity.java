@@ -14,11 +14,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import serial.Confirmacion;
+import serial.Usuario;
 import serial.Validacion;
 
-public class LogActivity extends AppCompatActivity implements Observer{
+public class LogActivity extends AppCompatActivity implements Observer {
 
-    private EditText name,pass;
+    private EditText name, pass;
     private ImageButton enter;
 
     private String[] info;
@@ -34,7 +35,7 @@ public class LogActivity extends AppCompatActivity implements Observer{
 
         Cliente.getInstance().setObserver(this);
 
-        type = Typeface.createFromAsset(getAssets(),"fonts/OpenSans-Light.ttf");
+        type = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Light.ttf");
 
         name = (EditText) findViewById(R.id.user_in);
         pass = (EditText) findViewById(R.id.pass_in);
@@ -47,10 +48,10 @@ public class LogActivity extends AppCompatActivity implements Observer{
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                info[0]=name.getText().toString();
-                info[1]=pass.getText().toString();
+                info[0] = name.getText().toString();
+                info[1] = pass.getText().toString();
 
-                if(info[0].isEmpty() && info[1].isEmpty()){
+                if (info[0].isEmpty() && info[1].isEmpty()) {
                     aviso("Escribe los campos para entrar");
                 } else {
                     try {
@@ -63,17 +64,26 @@ public class LogActivity extends AppCompatActivity implements Observer{
         });
     }
 
-    private void aviso(String msg){
+    private void aviso(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof Validacion){
+        if (arg instanceof Validacion) {
             Validacion v = (Validacion) arg;
-            if(v.getType().contains("log")){
-                if(v.isCheck()){
-                    startActivity(new Intent(LogActivity.this,HomeActivity.class));
+            if (v.getType().contains("log")) {
+                if (v.isCheck()) {
+                    Intent change = new Intent(LogActivity.this, HomeActivity.class);
+                    change.putExtra("usuario", new Usuario(info[0], info[1], ""));
+                    Cliente.getInstance().setCurrentUser(info[0]);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            aviso("Usuario actual: " + Cliente.getInstance().getCurrentUser());
+                        }
+                    });
+                    startActivity(change);
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override

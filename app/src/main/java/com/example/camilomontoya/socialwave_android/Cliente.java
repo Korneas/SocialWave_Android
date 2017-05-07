@@ -17,9 +17,12 @@ public class Cliente implements Runnable {
     private Socket s;
     private static Cliente ref;
     private Observer boss;
-    private static final String ADDRESS = "172.30.178.0";
+    private static final String ADDRESS = "192.168.1.60";
+    //private static final String ADDRESS = "172.30.178.0";
+    //private static final String ADDRESS = "172.30.180.13";
     private static final int PORT = 5000;
     private boolean life;
+    private String currentUser;
 
     private Cliente() {
         s = null;
@@ -48,7 +51,14 @@ public class Cliente implements Runnable {
                 Thread.sleep(500);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("No hay servidor conectado");
+                life = false;
+                try {
+                    s.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                s = null;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -71,5 +81,13 @@ public class Cliente implements Runnable {
 
     public void setObserver(Observer boss) {
         this.boss = boss;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 }

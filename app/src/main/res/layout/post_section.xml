@@ -1,10 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zona de post" />
-</LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="22dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/content_post"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_post"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#00000000"
+            android:elevation="15dp"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="Exprésate"
+            android:inputType="text"
+            android:lines="8"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/space_post"
+            android:layout_width="220dp"
+            android:layout_height="2dp"
+            android:layout_alignStart="@+id/content_post"
+            android:layout_below="@+id/name_post"
+            android:layout_marginTop="11dp"
+            app:srcCompat="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/addfile_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selected_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Añadir"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/addimg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addfile_post"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:srcCompat="@drawable/addimg_button" />
+
+        <ImageButton
+            android:id="@+id/addfile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/addimg_btn"
+            android:layout_toEndOf="@+id/space_post"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:srcCompat="@drawable/addfile_button" />
+
+        <ImageButton
+            android:id="@+id/addmusic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/addimg_btn"
+            android:layout_marginEnd="19dp"
+            android:layout_toStartOf="@+id/addimg_btn"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:srcCompat="@drawable/addmusic_button" />
+
+        <ImageView
+            android:id="@+id/selected_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/content_post"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/addimg_btn"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp" />
+
+    </RelativeLayout>
+</ScrollView>

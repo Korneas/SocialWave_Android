@@ -19,14 +19,14 @@
         <tab
             id="@+id/tab_notify"
             icon="@drawable/ic_notify"
-            title="Notify"
+            title="Notificaciones"
             barColorWhenSelected="#e9e9e9"
             inActiveColor="#cccccc"
             activeColor="#f20c6b" />
         <tab
             id="@+id/tab_profile"
             icon="@drawable/ic_profile"
-            title="Profile"
+            title="Perfil"
             barColorWhenSelected="#e9e9e9"
             inActiveColor="#cccccc"
             activeColor="#f20c6b"/>

@@ -21,6 +21,7 @@
         <activity android:name=".LogActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity"
+            android:label="@string/home"
             android:theme="@style/AppTheme"/>
     </application>
 </manifest>
