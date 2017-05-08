@@ -21,8 +21,8 @@ import java.io.InvalidObjectException;
 
 public class ImagenCarga {
 
-    static int MAX_WIDTH = 1000;
-    static int MAX_HEIGHT = 1000;
+    static int MAX_WIDTH = 1080;
+    static int MAX_HEIGHT = 1080;
     Uri uri;
     ContentResolver resolver;
     String path;
@@ -132,13 +132,13 @@ public class ImagenCarga {
 
         RectF rect = new RectF(0, 0, storedWidth, storedHeight);
         orientation.mapRect(rect);
-        int width = (int) rect.width();
-        int height = (int) rect.height();
+        float width = (float) rect.width();
+        float height = (float) rect.height();
         int subSample = 1;
 
         while (width > MAX_WIDTH || height > MAX_HEIGHT) {
-            width /= 2;
-            height /= 2;
+            width /= 1.5;
+            height /= 1.5;
             subSample *= 2;
         }
 

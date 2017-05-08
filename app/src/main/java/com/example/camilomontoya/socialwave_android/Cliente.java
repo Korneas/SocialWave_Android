@@ -23,6 +23,7 @@ public class Cliente implements Runnable {
     private static final int PORT = 5000;
     private boolean life;
     private String currentUser;
+    private int maxPostId;
 
     private Cliente() {
         s = null;
@@ -53,12 +54,6 @@ public class Cliente implements Runnable {
             } catch (IOException e) {
                 System.out.println("No hay servidor conectado");
                 life = false;
-                try {
-                    s.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                s = null;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -89,5 +84,13 @@ public class Cliente implements Runnable {
 
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public int getMaxPostId() {
+        return maxPostId;
+    }
+
+    public void setMaxPostId(int maxPostId) {
+        this.maxPostId = maxPostId;
     }
 }

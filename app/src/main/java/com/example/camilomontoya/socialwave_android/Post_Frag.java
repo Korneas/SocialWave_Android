@@ -22,6 +22,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+import serial.Validacion;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -29,7 +33,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by CamiloMontoya on 1/05/17.
  */
 
-public class Post_Frag extends Fragment {
+public class Post_Frag extends Fragment implements Observer{
 
     private TextView name, content,adding;
     private ImageButton add_file,add_img,add_music;
@@ -47,6 +51,8 @@ public class Post_Frag extends Fragment {
         name = (TextView) v.findViewById(R.id.name_post);
         content = (TextView) v.findViewById(R.id.content_post);
         adding = (TextView) v.findViewById(R.id.addfile_post);
+
+        Cliente.getInstance().setObserver(this);
 
         name.setText(Cliente.getInstance().getCurrentUser());
         type = Typeface.createFromAsset(((AppCompatActivity) getActivity()).getAssets(), "fonts/Montserrat-BoldItalic.ttf");
@@ -95,4 +101,20 @@ public class Post_Frag extends Fragment {
         }
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof Validacion){
+            Validacion v = (Validacion) arg;
+            if(v.isCheck() && v.getType().contains("posteado")){
+                ((AppCompatActivity) getActivity()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        selectedImage.setImageDrawable(null);
+                        content.setText("");
+                        Toast.makeText(((AppCompatActivity) getActivity()).getApplicationContext(), "Se realizo el post", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+    }
 }
