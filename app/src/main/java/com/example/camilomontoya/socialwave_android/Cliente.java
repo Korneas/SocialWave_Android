@@ -17,6 +17,8 @@ public class Cliente implements Runnable {
     private Socket s;
     private static Cliente ref;
     private Observer boss;
+
+    //ADDRESS Del servidor en el momento, se muestra en la consola del servidor para cambiarlo aqui
     private static final String ADDRESS = "192.168.1.60";
     //private static final String ADDRESS = "172.30.178.0";
     //private static final String ADDRESS = "172.30.180.13";
@@ -30,6 +32,10 @@ public class Cliente implements Runnable {
         life = true;
     }
 
+    /**
+     * Instancia del cliente para realizar el patron Singleton
+     * @return
+     */
     public static Cliente getInstance() {
         if (ref == null) {
             ref = new Cliente();
@@ -43,6 +49,9 @@ public class Cliente implements Runnable {
         while (life) {
 
             try {
+                /**
+                 * Se conecta con el servidor con el ADDRESS que se tiene de este
+                 */
                 if (s == null) {
                     s = new Socket(InetAddress.getByName(ADDRESS), PORT);
                 } else {
@@ -62,12 +71,22 @@ public class Cliente implements Runnable {
         }
     }
 
+    /**
+     * Metodo para recibir todos los objetos que envie el servidor y notificarlos al Observer
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void recibir() throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(s.getInputStream());
         Object o = in.readObject();
         boss.update(null, o);
     }
 
+    /**
+     * Metodo para enviar objetos al servidor
+     * @param o Object
+     * @throws IOException
+     */
     public void enviar(Object o) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
         out.writeObject(o);

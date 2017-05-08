@@ -2,6 +2,8 @@ package com.example.camilomontoya.socialwave_android;
 
 /**
  * Created by CamiloMontoya on 7/05/17.
+ * Clase creada con el fin de reducir el peso de la imagenes para su optimizacion en el envio
+ * si se da el caso de ser muy pesadas
  */
 
 import android.content.ContentResolver;

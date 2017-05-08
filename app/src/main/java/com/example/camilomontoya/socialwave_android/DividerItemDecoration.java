@@ -23,6 +23,11 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private int mOrientation;
 
+    /**
+     * Constructor de la clase para obtener el contexto y si la orientacion es portrait o landscape
+     * @param context Context
+     * @param orientation int
+     */
     public DividerItemDecoration(Context context, int orientation) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
@@ -30,6 +35,10 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         setOrientation(orientation);
     }
 
+    /**
+     * Set de la orientacion del divisor
+     * @param orientation int
+     */
     public void setOrientation(int orientation) {
         if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
             throw new IllegalArgumentException("orientacion invalida");

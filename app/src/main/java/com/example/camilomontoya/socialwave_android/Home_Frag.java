@@ -12,10 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -38,8 +35,12 @@ public class Home_Frag extends Fragment implements Observer{
 
         Cliente.getInstance().setObserver(this);
 
+        /**
+         * Se instancia el RecyclerView del layout de la activity
+         */
         recyclerView = (RecyclerView) v.findViewById(R.id.posteados);
 
+        //Se crea el adaptador que hace que los objetos serializable Post se adapten a la clase GeneralPost
         postAdapter = new GeneralPostAdapter(postList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(((AppCompatActivity)getActivity()).getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -53,6 +54,10 @@ public class Home_Frag extends Fragment implements Observer{
         return v;
     }
 
+    /**
+     * Metodo para añadir Post a la lista del RecyclerView
+     * @param p Post
+     */
     private void addPost(final Post p){
         ((AppCompatActivity)getActivity()).runOnUiThread(new Runnable() {
             @Override
@@ -76,6 +81,7 @@ public class Home_Frag extends Fragment implements Observer{
                 addPost(inPosts.get(i));
             }
 
+            //Actualizar la interfaz para ver los cambios del RecyclerView
             ((AppCompatActivity)getActivity()).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

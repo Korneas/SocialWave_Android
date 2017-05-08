@@ -68,6 +68,12 @@ public class LogActivity extends AppCompatActivity implements Observer {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Metodo en donde se reconocen los parametros por el servidor y este le manda la respuesta de que
+     * puede logearse
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Validacion) {

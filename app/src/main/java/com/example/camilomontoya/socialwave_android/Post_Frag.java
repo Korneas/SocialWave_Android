@@ -69,6 +69,7 @@ public class Post_Frag extends Fragment implements Observer{
         add_img = (ImageButton) v.findViewById(R.id.addimg_btn);
         add_music = (ImageButton) v.findViewById(R.id.addmusic_btn);
 
+        //Añadir imagen desde la galería
         add_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +86,12 @@ public class Post_Frag extends Fragment implements Observer{
         return v;
     }
 
+    /**
+     * Metodo para obtener la imagen que se seleccion desde la galería
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_SINGLE_PICTURE) {
@@ -101,6 +108,11 @@ public class Post_Frag extends Fragment implements Observer{
         }
     }
 
+    /**
+     * Update para confirmar el posteo
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         if(arg instanceof Validacion){

@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mBottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        mBottomBar2 = mBottomBar;
         mBottomBar.setTabTitleTypeface("fonts/OpenSans-Light.ttf");
 
         Intent changed = getIntent();
@@ -58,12 +57,20 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Clase creadora del Menu en el SupportActionBar
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_menu, menu);
 
-        mBottomBar2.setOnTabSelectListener(new OnTabSelectListener() {
+        /**
+         * Switch para el cambio de Fragments en la actividad del Home
+         */
+        mBottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_home) {
@@ -103,6 +110,11 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Si se elige el item Postear en el Framgent Post_Frag
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -140,6 +152,9 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metodo para salir de la app si se esta en el Home y no devolverlo al Log in
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);

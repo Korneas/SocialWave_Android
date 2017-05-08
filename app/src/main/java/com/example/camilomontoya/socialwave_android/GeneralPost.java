@@ -26,6 +26,7 @@ public class GeneralPost {
         for (int i = 0; i < waves.length; i++) {
             likes.add(waves[i]);
         }
+
         if (this.display != null) {
             System.out.println("El ByteArray es de tamaño"+this.display.length);
             map = BitmapFactory.decodeByteArray(this.display, 0, this.display.length);

@@ -41,6 +41,12 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
         this.postList = postList;
     }
 
+    /**
+     * Metodo para pintar en la interfaz el layout correspondiente para el post
+     * @param parent ViewGroup
+     * @param viewType int
+     * @return view
+     */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -49,6 +55,11 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
         return new MyViewHolder(itemView);
     }
 
+    /**
+     * Metodo para setear elementos del ViewHolder como TextView e ImageView
+     * @param holder MyViewHolder
+     * @param position int
+     */
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         GeneralPost posting = postList.get(position);
