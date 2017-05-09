@@ -7,14 +7,16 @@ public class Post implements Serializable {
     private String autor, msg, name;
     private int tipo, id;
     private byte[] file;
+    private String[] likes;
 
-    public Post(String autor, String msg, String name, int tipo, int id, byte[] file) {
+    public Post(String autor, String msg, String name, int tipo, int id, byte[] file, String[] likes) {
         this.autor = autor;
         this.msg = msg;
         this.name = name;
         this.tipo = tipo;
         this.id = id;
         this.file = file;
+        this.likes = likes;
     }
 
     public String getAutor() {
@@ -63,5 +65,13 @@ public class Post implements Serializable {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public String[] getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String[] likes) {
+        this.likes = likes;
     }
 }

@@ -138,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
                 String nombre = df.format(c.getTime());
 
                 try {
-                    Cliente.getInstance().enviar(new Post(Cliente.getInstance().getCurrentUser(),content.getText().toString(),nombre+postId,tipo,postId,pack));
+                    Cliente.getInstance().enviar(new Post(Cliente.getInstance().getCurrentUser(),content.getText().toString(),nombre+postId,tipo,postId,pack,new String[0]));
                     Cliente.getInstance().setMaxPostId(postId++);
                 } catch (IOException e) {
                     e.printStackTrace();

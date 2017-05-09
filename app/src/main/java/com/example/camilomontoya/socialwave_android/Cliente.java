@@ -22,6 +22,7 @@ public class Cliente implements Runnable {
     private static final String ADDRESS = "192.168.1.60";
     //private static final String ADDRESS = "172.30.178.0";
     //private static final String ADDRESS = "172.30.180.13";
+    //private static final String ADDRESS = "172.30.153.163";
     private static final int PORT = 5000;
     private boolean life;
     private String currentUser;

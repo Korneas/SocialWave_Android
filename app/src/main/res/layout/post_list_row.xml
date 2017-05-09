@@ -2,32 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
     android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:clickable="true"
-    android:orientation="vertical">
+    android:paddingTop="10dp">
 
     <TextView
         android:id="@+id/autor_post_title"
-        android:textSize="22dp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/image_post"
-        android:layout_below="@id/autor_post_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        android:layout_below="@id/autor_post_title"
+        android:layout_marginTop="12dp" />
 
     <ImageButton
         android:id="@+id/comment_post"
@@ -40,49 +40,54 @@
         android:scaleY="0.6"
         app:srcCompat="@drawable/addcomment_post_btn" />
 
-    <ImageButton
+    <ToggleButton
         android:id="@+id/wave_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#00000000"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        app:srcCompat="@drawable/addwave_post_btn"
+        android:layout_alignBottom="@+id/comment_post"
         android:layout_marginStart="19dp"
-        android:layout_alignBottom="@+id/comment_post"/>
+        android:background="@drawable/addwave_post_btn"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:textOff=""
+        android:textOn="" />
 
     <ImageButton
         android:id="@+id/save_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/comment_post"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp"
         android:background="#00000000"
         android:scaleX="0.6"
         android:scaleY="0.6"
-        app:srcCompat="@drawable/addsave_post_btn"
-        android:layout_marginEnd="35dp"
-        android:layout_alignBottom="@+id/comment_post"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@drawable/addsave_post_btn" />
 
     <TextView
         android:id="@+id/waves_of_post"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@+id/comment_post"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_post"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/autor_post"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@+id/waves_of_post"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/waves_of_post"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/msg"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@id/autor_post"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/autor_post"
+        android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>

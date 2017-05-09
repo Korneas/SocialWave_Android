@@ -10,17 +10,23 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import java.io.IOException;
 import java.util.List;
+
+import serial.Wave;
 
 public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.MyViewHolder> {
 
     private List<GeneralPost> postList;
+    private boolean liked;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView autorTitle, autorSubtitle, wavesOfPost, message;
         public ImageView imagePost;
-        public ImageButton wave, comment, save;
+        public ImageButton comment, save;
+        public ToggleButton wave;
 
         public MyViewHolder(View view) {
             super(view);
@@ -31,7 +37,7 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
 
             imagePost = (ImageView) view.findViewById(R.id.image_post);
 
-            wave = (ImageButton) view.findViewById(R.id.wave_post);
+            wave = (ToggleButton) view.findViewById(R.id.wave_post);
             comment = (ImageButton) view.findViewById(R.id.comment_post);
             save = (ImageButton) view.findViewById(R.id.save_post);
         }
@@ -43,7 +49,8 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
 
     /**
      * Metodo para pintar en la interfaz el layout correspondiente para el post
-     * @param parent ViewGroup
+     *
+     * @param parent   ViewGroup
      * @param viewType int
      * @return view
      */
@@ -57,23 +64,33 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
 
     /**
      * Metodo para setear elementos del ViewHolder como TextView e ImageView
-     * @param holder MyViewHolder
+     *
+     * @param holder   MyViewHolder
      * @param position int
      */
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        GeneralPost posting = postList.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        final GeneralPost posting = postList.get(position);
         holder.autorTitle.setText(posting.getAutor());
         holder.autorSubtitle.setText(posting.getAutor());
         holder.wavesOfPost.setText(posting.getWaves().length + " waves");
-        holder.message.setText(posting.getMsg());
+        holder.message.setText("- \"" + posting.getMsg() + "\"");
+
+        holder.autorTitle.setTypeface(ControlTipografia.getInstance().getTypeTitle());
+        holder.autorSubtitle.setTypeface(ControlTipografia.getInstance().getTypeSubtitle());
+        holder.wavesOfPost.setTypeface(ControlTipografia.getInstance().getTypeMsg());
+        holder.message.setTypeface(ControlTipografia.getInstance().getTypeMsg());
 
         holder.imagePost.setImageBitmap(posting.getImageBitmap());
 
         holder.wave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                try {
+                    Cliente.getInstance().enviar(new Wave(position, posting.getAutor()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -83,8 +100,6 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
 
             }
         });
-
-
     }
 
     @Override
