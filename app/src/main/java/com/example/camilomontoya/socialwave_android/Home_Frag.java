@@ -78,7 +78,6 @@ public class Home_Frag extends Fragment implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof ArrayList) {
-
             if (((ArrayList) arg).get(0) != null) {
                 if (((ArrayList) arg).get(0) instanceof Post) {
 
@@ -98,12 +97,6 @@ public class Home_Frag extends Fragment implements Observer {
                             postAdapter.notifyDataSetChanged();
                         }
                     });
-                } else if (((ArrayList) arg).get(0) instanceof Wave) {
-
-                    inWave = (ArrayList) arg;
-                    for (int i = 0; i < inWave.size(); i++) {
-                        
-                    }
                 }
             }
         }

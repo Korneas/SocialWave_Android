@@ -73,7 +73,21 @@ public class GeneralPostAdapter extends RecyclerView.Adapter<GeneralPostAdapter.
         final GeneralPost posting = postList.get(position);
         holder.autorTitle.setText(posting.getAutor());
         holder.autorSubtitle.setText(posting.getAutor());
-        holder.wavesOfPost.setText(posting.getWaves().length + " waves");
+
+        boolean likeUser = false;
+        String[] allWaves = posting.getWaves();
+
+        for (int i = 0; i < posting.getWaves().length; i++) {
+            if (Cliente.getInstance().getCurrentUser().contentEquals(allWaves[i])) {
+                likeUser = true;
+            }
+        }
+
+        if (likeUser) {
+            holder.wavesOfPost.setText("Tu y otros " + posting.getWaves().length + " waves");
+        } else {
+            holder.wavesOfPost.setText(posting.getWaves().length + " waves");
+        }
         holder.message.setText("- \"" + posting.getMsg() + "\"");
 
         holder.autorTitle.setTypeface(ControlTipografia.getInstance().getTypeTitle());

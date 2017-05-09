@@ -19,8 +19,8 @@ public class Cliente implements Runnable {
     private Observer boss;
 
     //ADDRESS Del servidor en el momento, se muestra en la consola del servidor para cambiarlo aqui
-    private static final String ADDRESS = "192.168.1.60";
-    //private static final String ADDRESS = "172.30.178.0";
+    //private static final String ADDRESS = "192.168.1.60";
+    private static final String ADDRESS = "172.30.141.28";
     //private static final String ADDRESS = "172.30.180.13";
     //private static final String ADDRESS = "172.30.153.163";
     private static final int PORT = 5000;
